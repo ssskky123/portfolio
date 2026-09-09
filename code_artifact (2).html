@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宋恺钰 - AIGC色彩视觉作品集</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Pacifico&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #fff4f7; /* Very light pink/cream background */
+            color: #333;
+            overflow-x: hidden;
+        }
+        .font-display { font-family: 'DM Serif Display', serif; }
+        .font-script { font-family: 'Pacifico', cursive; }
+        
+        /* Level 1: Huge block wrappers */
+        .l1-container {
+            border-radius: 3rem;
+            border: 8px solid #fff;
+            box-shadow: 0 30px 60px -15px rgba(255, 77, 133, 0.15);
+            margin-bottom: 6rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Level 2: Section wrappers */
+        .l2-container {
+            border: 4px solid #fff;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            margin-bottom: 3.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5), 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .l2-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px dashed currentColor;
+            opacity: 0.8;
+        }
+
+        /* Level 3: Specific category blocks */
+        .l3-container {
+            background: #fff;
+            border: 4px solid currentColor;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 8px 8px 0px currentColor; /* Hard shadow for Y2K feel */
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .l3-container:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px currentColor;
+        }
+        .l3-header {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            transform: translateY(-50%);
+            border: 3px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Miscellaneous Y2K decorators */
+        .dashed-line {
+            background-image: linear-gradient(to right, currentColor 50%, transparent 50%);
+            background-size: 15px 4px;
+            background-repeat: repeat-x;
+        }
+        .sticker {
+            position: absolute;
+            z-index: 10;
+            transform: rotate(-10deg);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .sticker:hover { transform: scale(1.1) rotate(5deg); }
+
+        /* 1. Extreme 3D Tilt */
+        .hover-tilt { 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; 
+            transform-style: preserve-3d; 
+            border: 6px solid #fff; 
+            border-radius: 1.5rem; 
+            cursor: pointer;
+        }
+        .hover-tilt:hover { 
+            transform: perspective(1000px) rotateX(15deg) rotateY(-15deg) scale(1.1) translateZ(30px); 
+            box-shadow: -20px 25px 40px rgba(0,0,0,0.25); 
+            z-index: 20; 
+            border-color: #ff4d85; 
+        }
+        
+        /* 2. Intense Neon Pulse */
+        .hover-neon { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 4px solid transparent; 
+            border-radius: 1.5rem; 
+            cursor: pointer;
+        }
+        .hover-neon:hover { 
+            transform: translateY(-12px) scale(1.08); 
+            box-shadow: 0 0 30px currentColor, 0 0 60px currentColor, inset 0 0 20px currentColor; 
+            z-index: 20; 
+            border-color: #fff; 
+        }
+        
+        /* 3. Dramatic Pan */
+        .hover-pan { overflow: hidden; border-radius: 1.5rem; border: 4px solid #fff; cursor: pointer; }
+        .hover-pan img { transition: transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94); transform-origin: center; }
+        .hover-pan:hover img { transform: scale(1.3) translate(-3%, -3%); }
+        
+        /* 4. Extreme Scroll/Shape Morph */
+        .hover-scroll { 
+            overflow: hidden; 
+            position: relative; 
+            border-radius: 60px 12px 60px 12px; 
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+            border: 5px solid rgba(16, 185, 129, 0.3); 
+            cursor: pointer;
+        }
+        .hover-scroll img { transition: all 0.6s ease; transform: scale(1.1); }
+        .hover-scroll:hover { 
+            border-radius: 12px 60px 12px 60px; 
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4); 
+            border-color: #10b981; 
+            transform: scale(1.05);
+        }
+        .hover-scroll:hover img { transform: scale(1); filter: brightness(1.1); }
+
+        /* 5. Snappy Glass Info Reveal */
+        .hover-glass { position: relative; overflow: hidden; border-radius: 1.5rem; border: 4px solid #fff; cursor: pointer; }
+        .hover-glass .glass-info { 
+            position: absolute; bottom: 0; left: 0; right: 0; 
+            padding: 1.5rem; 
+            background: rgba(255,255,255,0.85); 
+            backdrop-filter: blur(20px); 
+            transform: translateY(110%); 
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            border-top: 3px solid currentColor; 
+            color: #333; 
+        }
+        .hover-glass:hover .glass-info { transform: translateY(0); }
+        .hover-glass img { transition: transform 0.5s ease; }
+        .hover-glass:hover img { transform: scale(1.1) translateY(-10%); }
+
+        /* 6. Violent Glitch */
+        .hover-glitch { position: relative; overflow: hidden; border-radius: 1.5rem; border: 4px solid currentColor; cursor: pointer; }
+        .hover-glitch::before { 
+            content: ""; position: absolute; inset: 0; 
+            background: repeating-linear-gradient(transparent 0, rgba(6, 182, 212, 0.6) 2px, transparent 6px); 
+            opacity: 0; z-index: 10; pointer-events: none; transition: opacity 0.2s; 
+        }
+        .hover-glitch:hover::before { opacity: 1; }
+        .hover-glitch img { transition: transform 0.2s ease; }
+        .hover-glitch:hover img { animation: violent-shift 0.1s infinite alternate; transform: scale(1.08); }
+        @keyframes violent-shift { 
+            0% { filter: drop-shadow(8px 0 0 rgba(255,0,0,0.9)) drop-shadow(-8px 0 0 rgba(0,255,255,0.9)) hue-rotate(90deg); transform: translate(2px, -2px) scale(1.08); } 
+            100% { filter: drop-shadow(-8px 0 0 rgba(255,0,0,0.9)) drop-shadow(8px 0 0 rgba(0,255,255,0.9)) hue-rotate(-90deg); transform: translate(-2px, 2px) scale(1.08); } 
+        }
+
+        /* 7. Deep Optical Focus */
+        .hover-focus { overflow: hidden; border-radius: 1.5rem; border: 4px solid #fff; cursor: pointer; }
+        .hover-focus img { filter: blur(12px) sepia(0.5) brightness(0.6); transition: filter 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s ease; transform: scale(1.2); }
+        .hover-focus:hover img { filter: blur(0px) sepia(0) brightness(1.1); transform: scale(1); }
+
+        /* 8. Hyper E-commerce Ripple */
+        .hover-ecommerce { cursor: pointer; border-radius: 1.5rem; border: 4px solid #fff; overflow: hidden; position: relative;}
+        .hover-ecommerce .play-btn { transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); background: rgba(255,255,255,0.3); border: 2px solid white; }
+        .hover-ecommerce:hover .play-btn { 
+            transform: scale(1.8) rotate(90deg); 
+            box-shadow: 0 0 0 15px rgba(250, 204, 21, 0.4); 
+            animation: hyper-ripple 1s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+            background: #eab308; 
+            border-color: #fff; 
+        }
+        .hover-ecommerce img { transition: transform 0.4s ease; }
+        .hover-ecommerce:hover img { transform: scale(1.1); }
+        @keyframes hyper-ripple { 0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.8); } 100% { box-shadow: 0 0 0 40px rgba(250, 204, 21, 0); } }
+
+        /* 9. Harsh Cinematic Letterbox */
+        .hover-cinematic { position: relative; overflow: hidden; border-radius: 1.5rem; border: 4px solid currentColor; cursor: pointer; }
+        .hover-cinematic::before, .hover-cinematic::after { 
+            content: ''; position: absolute; left: 0; right: 0; height: 0; 
+            background: #000; z-index: 10; transition: height 0.3s cubic-bezier(0.8, 0, 0.2, 1); 
+        }
+        .hover-cinematic::before { top: 0; }
+        .hover-cinematic::after { bottom: 0; }
+        .hover-cinematic:hover::before, .hover-cinematic:hover::after { height: 18%; }
+        .hover-cinematic img { transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .hover-cinematic:hover img { transform: scale(1.15); filter: contrast(1.3) saturate(1.4) brightness(0.9); }
+
+        #lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 9998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        #lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+            cursor: zoom-out;
+        }
+        
+        #lightbox-content {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none; 
+            border-radius: 2rem;
+            border: 8px solid #fff;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        #lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        #lightbox-content.active {
+            pointer-events: auto;
+            cursor: zoom-out;
+        }
+        .zoomable-item { cursor: zoom-in; }
+        .zoom-hidden { opacity: 0 !important; }
+
+        /* ==============================================
+           NEW COVER ANIMATIONS 
+           ============================================== */
+        
+        /* 1. Playful Spring Entrance for Main Container & Titles */
+        @keyframes floatUpSpring {
+            0% { opacity: 0; transform: translateY(60px); }
+            60% { opacity: 1; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 2. Bouncy Pop-In for Stickers & Pills */
+        @keyframes popInSpring {
+            0% { opacity: 0; transform: scale(0.4); }
+            70% { opacity: 1; transform: scale(1.15); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* 3. Fluid Blob Drifting for Background */
+        @keyframes blobDrift1 {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(4vw, 3vh) scale(1.1) rotate(5deg); }
+        }
+        @keyframes blobDrift2 {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(-3vw, 4vh) scale(1.05) rotate(-5deg); }
+        }
+        @keyframes blobDrift3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(5vw, -3vh) scale(0.95); }
+        }
+
+        /* 4. Anti-Gravity Floating for Stickers (Preserving Base Rotation) */
+        @keyframes floatSticker1 {
+            0%, 100% { transform: rotate(-10deg) translateY(0px); }
+            50% { transform: rotate(-5deg) translateY(-15px); }
+        }
+        @keyframes floatSticker2 {
+            0%, 100% { transform: rotate(12deg) translateY(0px); }
+            50% { transform: rotate(8deg) translateY(-15px); }
+        }
+
+        /* 5. Avatar Neon Pulse */
+        @keyframes avatarPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 77, 133, 0.4), 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+            50% { box-shadow: 0 0 0 20px rgba(255, 77, 133, 0), 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        }
+
+        /* Utility Classes for Assignment */
+        .animate-float-up { animation: floatUpSpring 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; }
+        .animate-pop-in { animation: popInSpring 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+
+        .anim-blob-1 { animation: blobDrift1 12s infinite ease-in-out; }
+        .anim-blob-2 { animation: blobDrift2 15s infinite ease-in-out; }
+        .anim-blob-3 { animation: blobDrift3 18s infinite ease-in-out; }
+        
+        /* Overriding specific sticker hover logic slightly to accommodate keyframes smoothly */
+        .anim-sticker-1 { animation: floatSticker1 4s infinite ease-in-out; }
+        .anim-sticker-1:hover { animation-play-state: paused; transform: scale(1.1) rotate(-5deg); }
+        
+        .anim-sticker-2 { animation: floatSticker2 4.5s infinite ease-in-out; transform: rotate(12deg); }
+        .anim-sticker-2:hover { animation-play-state: paused; transform: scale(1.1) rotate(18deg); }
+        
+        .anim-avatar { animation: avatarPulse 3s infinite ease-in-out; }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <header class="w-full min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-[#fff0f5]">
+        <!-- Decorative Background (Now Animated) -->
+        <div class="absolute inset-0 opacity-40 pointer-events-none">
+            <div class="anim-blob-1 absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[#ff7eb3] rounded-full mix-blend-multiply filter blur-[100px] opacity-70"></div>
+            <div class="anim-blob-2 absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-[#50d8d7] rounded-full mix-blend-multiply filter blur-[100px] opacity-60"></div>
+            <div class="anim-blob-3 absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] bg-[#f5a623] rounded-full mix-blend-multiply filter blur-[120px] opacity-50"></div>
+        </div>
+        
+        <!-- Floating Stickers/Decorations (Now Animated with wrappers where needed) -->
+        <div class="absolute top-20 right-1/4 z-10 animate-pop-in delay-300">
+            <div class="anim-sticker-1 sticker bg-yellow-400 text-white font-black text-2xl px-6 py-2 rounded-full border-4 border-white shadow-xl !relative !top-0 !right-0">AIGC!</div>
+        </div>
+        
+        <div class="absolute bottom-32 left-20 z-10 animate-pop-in delay-500">
+            <div class="anim-sticker-2 sticker bg-blue-500 text-white font-black text-xl px-4 py-2 rounded-lg border-4 border-white shadow-xl !relative !bottom-0 !left-0">Visual Art</div>
+        </div>
+
+        <!-- Main Content Box (Slide Up Entrance) -->
+        <div class="max-w-5xl w-full border-[8px] border-white shadow-[0_40px_80px_rgba(255,77,133,0.3)] bg-white/40 backdrop-blur-xl p-10 md:p-20 text-center relative z-10 rounded-[3rem] animate-float-up delay-100">
+            
+            <!-- Top Pill Wrapper to preserve positioning while popping -->
+            <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 w-max">
+                <div class="bg-[#ff4d85] text-white px-10 py-3 rounded-full font-black text-xl tracking-widest uppercase border-4 border-white shadow-lg animate-pop-in delay-600">
+                    Portfolio Design
+                </div>
+            </div>
+
+            <div class="animate-float-up delay-300">
+                <h1 class="text-7xl md:text-[8rem] font-display text-[#ff4d85] leading-none mt-10 mb-4 drop-shadow-md">
+                    AIGC
+                </h1>
+            </div>
+            
+            <!-- Wrapper to preserve the static rotate-6 while allowing entrance slide -->
+            <div class="animate-float-up delay-400">
+                <h2 class="font-script text-[#50d8d7] text-6xl md:text-8xl -mt-8 md:-mt-12 mb-8 inline-block transform -rotate-6 drop-shadow-lg" style="-webkit-text-stroke: 2px white;">
+                    Visual Collection
+                </h2>
+            </div>
+
+            <!-- About Me Card (Entrance cascade) -->
+            <div class="mt-12 bg-[#ffebf0] rounded-3xl p-8 max-w-3xl mx-auto shadow-inner border-4 border-white text-left relative animate-float-up delay-500">
+                
+                 <!-- Pop-in "Me" Badge -->
+                 <div class="absolute -top-6 -left-6 z-10 animate-pop-in delay-700">
+                    <div class="bg-yellow-400 text-white w-16 h-16 rounded-full flex items-center justify-center font-black text-2xl border-4 border-white shadow-md transform -rotate-12">Me</div>
+                 </div>
+
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <!-- Added anim-avatar pulse effect here -->
+                    <div class="anim-avatar w-48 h-48 rounded-full overflow-hidden border-8 border-white shadow-xl shrink-0">
+                        <img src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/0f6a288613da79b7d595250a1055ce52.jpg" alt="Avatar" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-4">
+                        <p class="font-black text-4xl text-[#ff4d85]">宋恺钰</p>
+                        <p class="text-gray-600 font-bold tracking-widest text-sm uppercase">湖北美术学院 · 影视摄影与制作</p>
+                        <div class="w-full h-px dashed-line text-pink-300 my-2"></div>
+                        <p class="text-sm text-gray-700 leading-relaxed font-bold">熟练掌握可灵、即梦、Vidu等主流AI工具。具备专业视听语言能力，独立完成剧本镜头化、分镜生成、光影渲染及后期全流程制作。</p>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-xs font-black shadow-sm transition-transform hover:scale-110 cursor-default">AI 实操</span>
+                            <span class="bg-[#50d8d7] text-white px-3 py-1 rounded-full text-xs font-black shadow-sm transition-transform hover:scale-110 cursor-default">全域视觉把控</span>
+                            <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-black shadow-sm transition-transform hover:scale-110 cursor-default">影视全流程</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1400px] mx-auto px-4 py-16">
+        
+        <section class="l1-container bg-[#fff5f7]">
+            <div class="bg-[#ff4d85] text-white p-10 flex flex-col md:flex-row items-center justify-between border-b-8 border-white border-dashed">
+                <div>
+                    <h2 class="text-5xl md:text-6xl font-black tracking-widest drop-shadow-md">人物视觉作品</h2>
+                    <p class="text-pink-200 font-bold mt-2 uppercase text-lg tracking-[0.2em]">Character Visual Art</p>
+                </div>
+                <span class="text-9xl font-display opacity-30 leading-none">I</span>
+            </div>
+            
+            <div class="p-6 md:p-12">
+                <!-- Level 2-1: 现实主义真人写实 -->
+                <div class="l2-container border-pink-300">
+                    <div class="l2-header text-pink-500 flex items-center gap-4">
+                        <span class="bg-pink-500 text-white text-3xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-md transform -rotate-3">1</span>
+                        <h3 class="text-4xl font-black">现实主义真人写实</h3>
+                    </div>
+                    
+                    <!-- L3: 现代真人 -->
+                    <div class="l3-container text-red-500 bg-red-50/50">
+                        <div class="l3-header bg-red-500 text-white">现代真人</div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/canvas-history-25827870.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/canvas-history-25827870.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/nz4).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/nz4).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/nzz1.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/nzz1.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/qpmm.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/qpmm.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%A5%B3%E8%80%81%E5%B8%88.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%A5%B3%E8%80%81%E5%B8%88.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E4%B8%BB%E7%99%BD%E8%A1%AC%E8%A1%AB.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E4%B8%BB%E7%99%BD%E8%A1%AC%E8%A1%AB.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E4%BD%8E%E9%A9%AC%E5%B0%BE%E5%A5%B32.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E4%BD%8E%E9%A9%AC%E5%B0%BE%E5%A5%B32.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E9%AB%98%E7%9F%AD%E8%A2%96.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E9%AB%98%E7%9F%AD%E8%A2%96.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%A5%B3%E5%A4%A7%E9%AB%98%E9%A9%AC%E5%B0%BE%E5%86%9B%E8%AE%AD%E6%9C%8D.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%A5%B3%E5%A4%A7%E9%AB%98%E9%A9%AC%E5%B0%BE%E5%86%9B%E8%AE%AD%E6%9C%8D.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%8E%8B%E4%BA%8C%E8%80%85png.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%8E%8B%E4%BA%8C%E8%80%85png.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%20(11.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%20(11.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E4%B8%AD%E5%B9%B4%E5%A5%B3.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E4%B8%AD%E5%B9%B4%E5%A5%B3.png" class="w-full h-full object-cover rounded-xl"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- L3: 古代真人 -->
+                    <div class="l3-container text-orange-500 bg-orange-50/50">
+                        <div class="l3-header bg-orange-500 text-white">古代真人</div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/1010.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/1010.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260624-140320.jpg" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260624-140320.jpg" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/333.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/333.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/5555.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/5555.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202%20(4).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202%20(4).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%88%A4%E5%AE%98.webp" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%88%A4%E5%AE%98.webp" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%9B%BE%E7%89%87%20(1).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%9B%BE%E7%89%87%20(1).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%9B%BE%E7%89%87%20(2).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%9B%BE%E7%89%87%20(2).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%9B%BE%E7%89%87%20(3).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%9B%BE%E7%89%87%20(3).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%B8%88%E5%B0%8A.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%B8%88%E5%B0%8A.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E7%94%B7%E5%8F%8D1.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E7%94%B7%E5%8F%8D1.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E9%AC%BC%E8%A7%81%E6%84%81.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E9%AC%BC%E8%A7%81%E6%84%81.png" class="w-full h-full object-cover rounded-xl"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- L3: 海外 -->
+                    <div class="l3-container text-yellow-500 bg-yellow-50/50">
+                        <div class="l3-header bg-yellow-500 text-white">海外</div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%201.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%201.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_32_09.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_32_09.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_24_30.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_24_30.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_19_58.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_19_58.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_05_18.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_05_18.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_11_48.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_11_48.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2016_58_05.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2016_58_05.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_50_28.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B48%E6%9C%8830%E6%97%A5%2017_50_28.png" class="w-full h-full object-cover rounded-xl"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 2-2: 3D动漫风格创作 (Moved up) -->
+                <div class="l2-container border-purple-300">
+                    <div class="l2-header text-purple-600 flex items-center gap-4">
+                        <span class="bg-purple-600 text-white text-3xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-md transform rotate-3">2</span>
+                        <h3 class="text-4xl font-black">3D动漫风格创作</h3>
+                    </div>
+                    
+                    <!-- L3: 3D仙侠人物 -->
+                    <div class="l3-container text-fuchsia-500 bg-fuchsia-50/50">
+                        <div class="l3-header bg-fuchsia-500 text-white">3D仙侠人物</div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="aspect-video bg-gray-900 text-fuchsia-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/20260708-095736.jpg" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/20260708-095736.jpg" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-fuchsia-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/Image%2013%20(1).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/Image%2013%20(1).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-fuchsia-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/Image%206.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/Image%206.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-fuchsia-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B49%E6%9C%887%E6%97%A5%2019_19_46.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B49%E6%9C%887%E6%97%A5%2019_19_46.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-fuchsia-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B49%E6%9C%887%E6%97%A5%2018_59_54.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B49%E6%9C%887%E6%97%A5%2018_59_54.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-fuchsia-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%93%AA%E5%90%92.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%93%AA%E5%90%92.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-fuchsia-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/Image%202%20(3).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/Image%202%20(3).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-fuchsia-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/Image%203%20(8).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/Image%203%20(8).png" class="w-full h-full object-cover rounded-xl"></div>
+                        </div>
+                    </div>
+
+                    <!-- L3: 3D灵兽异兽 (Updated with 5 images) -->
+                    <div class="l3-container text-indigo-500 bg-indigo-50/50">
+                        <div class="l3-header bg-indigo-500 text-white text-indigo-500">3D灵兽异兽</div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                            <div class="aspect-video bg-gray-900 text-indigo-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202%20(2).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202%20(2).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-indigo-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%2017.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%2017.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-indigo-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%2018.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%2018.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-indigo-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%2019.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%2019.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-indigo-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-g-2_2072148280963637249_0_1782873703.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-g-2_2072148280963637249_0_1782873703.png" class="w-full h-full object-cover rounded-xl"></div>
+                        </div>
+                    </div>
+
+                    <!-- L3: 3D古代人物 -->
+                    <div class="l3-container text-purple-500 bg-purple-50/50">
+                        <div class="l3-header bg-purple-500 text-white text-purple-500">3D古代人物</div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="aspect-video bg-gray-900 text-purple-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260625-095131.jpg" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260625-095131.jpg" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-purple-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(3).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(3).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-purple-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%201%20(3).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%201%20(3).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-purple-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(1).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(1).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-purple-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(2).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(2).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-purple-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-g-2_2070197256841465857_0_1782408603.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-g-2_2070197256841465857_0_1782408603.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-purple-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-g-2_2070126649374281730_0_1782391689.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-g-2_2070126649374281730_0_1782391689.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-purple-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202.png" class="w-full h-full object-cover rounded-xl"></div>
+                        </div>
+                    </div>
+
+                    <!-- L3: 3D现代人物 -->
+                    <div class="l3-container text-violet-500 bg-violet-50/50">
+                        <div class="l3-header bg-violet-500 text-white text-violet-500">3D现代人物</div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260723-152120.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260723-152120.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%201%20(2).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%201%20(2).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%8A%A9%E7%90%86.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%8A%A9%E7%90%86.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%A5%B3%E4%BA%8C%E7%8E%B0%E4%BB%A30.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%A5%B3%E4%BA%8C%E7%8E%B0%E4%BB%A30.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%A5%B3%E5%B8%B8%E6%94%B9%E5%AE%8C.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%A5%B3%E5%B8%B8%E6%94%B9%E5%AE%8C.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%204%20(13).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%204%20(13).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/export%20(10.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/export%20(10.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/export%20(10).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/export%20(10).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E6%97%97%E8%A2%8D%E5%A5%B3.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E6%97%97%E8%A2%8D%E5%A5%B3.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-900 text-violet-500 hover-neon zoomable-item overflow-hidden"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E6%97%97%E8%A2%8D.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E6%97%97%E8%A2%8D.png" class="w-full h-full object-cover rounded-xl"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 2-3: 保持人物一致性 (Moved down) -->
+                <div class="l2-container border-teal-300">
+                    <div class="l2-header text-teal-600 flex items-center gap-4">
+                        <span class="bg-teal-600 text-white text-3xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-md transform -rotate-3">3</span>
+                        <h3 class="text-4xl font-black">保持人物一致性</h3>
+                    </div>
+                    
+                    <!-- L3: 一致性展示 -->
+                    <div class="l3-container text-teal-500 bg-teal-50/50">
+                        <div class="l3-header bg-teal-500 text-white">一致性展示</div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/20260804-184614.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/20260804-184614.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/image%20(12).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/image%20(12).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%20(17).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%20(17).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%20(19).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%20(19).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%20(21).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E5%9B%BE%E7%89%87%20(21).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E5%B8%B8%E6%94%B9%E5%AE%8C.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E5%B8%B8%E6%94%B9%E5%AE%8C.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E5%A9%9A%E6%94%B9%E5%AE%8C111.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E5%A9%9A%E6%94%B9%E5%AE%8C111.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E4%B8%A7%E6%94%B9%E5%AE%8C1111.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E4%B8%A7%E6%94%B9%E5%AE%8C1111.png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E8%AF%81%E6%94%B9%E5%AE%8C).png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E8%AF%81%E6%94%B9%E5%AE%8C).png" class="w-full h-full object-cover rounded-xl"></div>
+                            <div class="aspect-video bg-gray-100 hover-tilt zoomable-item relative"><img data-src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E7%8E%B0%E6%97%A5%E6%94%B9%E5%AE%8C.png" src="https://raw.githubusercontent.com/ssskky123/-2/refs/heads/main/%E7%94%B7%E7%8E%B0%E6%97%A5%E6%94%B9%E5%AE%8C.png" class="w-full h-full object-cover rounded-xl"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="l1-container bg-[#f0fdff]">
+            <div class="bg-[#06b6d4] text-white p-10 flex flex-col md:flex-row items-center justify-between border-b-8 border-white border-dashed">
+                <div>
+                    <h2 class="text-5xl md:text-6xl font-black tracking-widest drop-shadow-md">场景视觉作品</h2>
+                    <p class="text-cyan-200 font-bold mt-2 uppercase text-lg tracking-[0.2em]">Scene & Environment Design</p>
+                </div>
+                <span class="text-9xl font-display opacity-30 leading-none">II</span>
+            </div>
+            
+            <div class="p-6 md:p-12 space-y-10">
+                <!-- L2-1: 仙侠玄幻场景 -->
+                <div class="l2-container border-cyan-300">
+                    <div class="l2-header text-cyan-600 flex items-center gap-4">
+                        <span class="bg-cyan-600 text-white text-3xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-md transform -rotate-3">1</span>
+                        <h3 class="text-4xl font-black">仙侠玄幻场景</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/export%20(2).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/export%20(2).png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202.png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/111.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/111.png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202%20(4).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%202%20(4).png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%204%20(7).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%204%20(7).png" class="w-full aspect-video object-cover"></div>
+                    </div>
+                </div>
+
+                <!-- L2-2: 古风国风场景 -->
+                <div class="l2-container border-emerald-300">
+                    <div class="l2-header text-emerald-600 flex items-center gap-4">
+                        <span class="bg-emerald-600 text-white text-3xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-md transform rotate-3">2</span>
+                        <h3 class="text-4xl font-black">古风国风场景</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E9%92%9F%E7%81%B5%E8%A1%97%E6%97%A5.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E9%92%9F%E7%81%B5%E8%A1%97%E6%97%A5.png" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E8%B5%B5%E5%BA%B7%E5%8D%A7%E5%AE%A4%20(4).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E8%B5%B5%E5%BA%B7%E5%8D%A7%E5%AE%A4%20(4).png" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%85%B5%E9%A9%AC%E5%8F%B81.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%85%B5%E9%A9%AC%E5%8F%B81.png" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/img_v3_02131_adb0cd19-832a-49ba-80cc-742a1c4aeb4g.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/img_v3_02131_adb0cd19-832a-49ba-80cc-742a1c4aeb4g.png" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260630-002626.jpg" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260630-002626.jpg" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%201%20(5)%20(1).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%201%20(5)%20(1).png" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%203%20(7).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%203%20(7).png" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260626-145414.jpg" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260626-145414.jpg" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%AE%81%E7%8E%8B%E5%A4%A7%E6%AE%BF.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%AE%81%E7%8E%8B%E5%A4%A7%E6%AE%BF.png" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                        <div class="hover-scroll zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%A5%B3%E5%B8%9D%20%E5%8D%A7%E5%AE%A4.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%A5%B3%E5%B8%9D%20%E5%8D%A7%E5%AE%A4.png" class="w-full aspect-video object-cover rounded-[inherit]"></div>
+                    </div>
+                </div>
+
+                <!-- L2-3: 现代全品类场景 -->
+                <div class="l2-container border-blue-300">
+                    <div class="l2-header text-blue-600 flex items-center gap-4">
+                        <span class="bg-blue-600 text-white text-3xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-md transform -rotate-3">3</span>
+                        <h3 class="text-4xl font-black">现代全品类场景</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%204%20(8)%20(1).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/Image%204%20(8)%20(1).png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260721-190916.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260721-190916.png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%AE%B4%E4%BC%9A.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%AE%B4%E4%BC%9A.png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-n-pro_2066519823982411777_0_1781531734.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-n-pro_2066519823982411777_0_1781531734.png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%9B%9B%E8%A7%86%E5%9B%BE%EF%BC%88VIP%E7%97%85%E6%88%BF.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%9B%9B%E8%A7%86%E5%9B%BE%EF%BC%88VIP%E7%97%85%E6%88%BF.png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-g-2_2075774186701611009_0_1783738176.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/running_rhart-image-g-2_2075774186701611009_0_1783738176.png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%B0%8F%E9%A5%AD%E9%A6%86.png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/%E5%B0%8F%E9%A5%AD%E9%A6%86.png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260721-132622.jpg" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/20260721-132622.jpg" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(6)%20(1).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(6)%20(1).png" class="w-full aspect-video object-cover"></div>
+                        <div class="hover-pan zoomable-item bg-white"><img data-src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(8).png" src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/image%20(8).png" class="w-full aspect-video object-cover"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="l1-container bg-[#2d3748] border-gray-900 text-white shadow-[0_40px_80px_rgba(0,0,0,0.4)]">
+            <div class="bg-gray-900 text-white p-10 flex flex-col md:flex-row items-center justify-between border-b-8 border-gray-700 border-dashed">
+                <div>
+                    <h2 class="text-5xl md:text-6xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 drop-shadow-md">动态视频作品</h2>
+                    <p class="text-gray-400 font-bold mt-2 uppercase text-lg tracking-[0.2em]">Video & Motion Design</p>
+                </div>
+                <span class="text-9xl font-display text-gray-800 leading-none" style="-webkit-text-stroke: 2px rgba(255,255,255,0.1);">III</span>
+            </div>
+            
+            <div class="p-6 md:p-12 space-y-10">
+                
+                <!-- L2-1: 视觉特效视频 -->
+                <div class="l2-container border-cyan-500 bg-gray-800/80 shadow-[inset_0_0_0_2px_rgba(6,182,212,0.5)]">
+                    <div class="l2-header text-cyan-400 flex items-center gap-4 border-cyan-600/50">
+                        <span class="bg-cyan-500 text-gray-900 text-3xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-[0_0_15px_#06b6d4] transform -rotate-3">1</span>
+                        <h3 class="text-4xl font-black">视觉特效视频</h3>
+                    </div>
+                    
+                    <div class="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden border-4 border-cyan-500 shadow-[0_0_30px_rgba(6,182,212,0.4)] bg-black group hover:shadow-[0_0_50px_rgba(6,182,212,0.6)] transition-shadow duration-300">
+                        <!-- 嵌入视频 iframe -->
+                        <iframe src="https://www.feicut.com/fv/FVo912wyuvkw?cm=2&fc=11&p=0" class="w-full aspect-video relative z-0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        
+                        <!-- 备用跳转按钮：当鼠标悬浮时显示。防止第三方平台限制iframe嵌套导致无法播放时，提供直接跳转通道 -->
+                        <div class="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="https://www.feicut.com/fv/FVo912wyuvkw?cm=2&fc=11&p=0" target="_blank" class="bg-cyan-500/90 hover:bg-cyan-400 text-gray-900 font-bold text-sm px-4 py-2 rounded-full backdrop-blur-md transition-all shadow-[0_0_15px_rgba(6,182,212,0.8)] border-2 border-cyan-300 inline-block">
+                                ↗ 在新窗口打开播放
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L2-2: 剧情短剧视频 -->
+                <div class="l2-container border-pink-500 bg-[#be185d]/40 shadow-[0_0_40px_rgba(190,24,93,0.5)] backdrop-blur-xl">
+                    <div class="l2-header text-pink-300 flex items-center gap-4 border-pink-500/50">
+                        <span class="bg-pink-500 text-white text-3xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-[0_0_15px_#f472b6] transform rotate-3">2</span>
+                        <h3 class="text-4xl font-black">剧情短剧视频</h3>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+                        
+                        <!-- 第1个短剧 -->
+                        <a href="https://novelquickapp.com/s/e06nKfbx6PU/" target="_blank" class="hover-cinematic block text-pink-500 group">
+                            <img src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/e7194739216937c74030b8587c196fc8.jpg" class="w-full aspect-[3/4] object-cover">
+                            <!-- 悬浮时显示的播放图标 -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/40">
+                                <div class="w-14 h-14 bg-pink-500 rounded-full flex items-center justify-center shadow-[0_0_20px_#f472b6]">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z"></path></svg>
+                                </div>
+                            </div>
+                            <!-- 短剧标题 -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-black/80 px-3 py-1.5 rounded text-xs font-mono text-pink-300 z-20 border border-pink-500/50 truncate" title="《帝师县令之女帝请我入朝堂》">《帝师县令之女帝请我入朝堂》</div>
+                        </a>
+                        
+                        <!-- 第2个短剧 -->
+                        <a href="https://novelquickapp.com/s/X5sxWjfmlw4/" target="_blank" class="hover-cinematic block text-pink-500 group">
+                            <img src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/8ae10d5515c04145bb5b88380def4a16.jpg" class="w-full aspect-[3/4] object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/40">
+                                <div class="w-14 h-14 bg-pink-500 rounded-full flex items-center justify-center shadow-[0_0_20px_#f472b6]">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4 bg-black/80 px-3 py-1.5 rounded text-xs font-mono text-pink-300 z-20 border border-pink-500/50 truncate" title="《欲染甜梨全靠梨香治总裁失眠》">《欲染甜梨全靠梨香治总裁失眠》</div>
+                        </a>
+
+                        <!-- 第3个短剧 -->
+                        <a href="https://novelquickapp.com/s/lKoQ2IONzME/" target="_blank" class="hover-cinematic block text-pink-500 group">
+                            <img src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/854c4a2a7a84c9ed70e2a39592cd9024.jpg" class="w-full aspect-[3/4] object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/40">
+                                <div class="w-14 h-14 bg-pink-500 rounded-full flex items-center justify-center shadow-[0_0_20px_#f472b6]">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4 bg-black/80 px-3 py-1.5 rounded text-xs font-mono text-pink-300 z-20 border border-pink-500/50 truncate" title="《落芳各归枝》">《落芳各归枝》</div>
+                        </a>
+
+                        <!-- 第4个短剧 -->
+                        <a href="https://novelquickapp.com/s/0I1yLN1in0g/" target="_blank" class="hover-cinematic block text-pink-500 group">
+                            <img src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/540c96419f9ec367388b56e1c7994f0a.jpg" class="w-full aspect-[3/4] object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/40">
+                                <div class="w-14 h-14 bg-pink-500 rounded-full flex items-center justify-center shadow-[0_0_20px_#f472b6]">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4 bg-black/80 px-3 py-1.5 rounded text-xs font-mono text-pink-300 z-20 border border-pink-500/50 truncate" title="《一千块蹭我五十万酒席》">《一千块蹭我五十万酒席》</div>
+                        </a>
+
+                        <!-- 第5个短剧 -->
+                        <a href="https://novelquickapp.com/s/t9bFmQ-wwBM/" target="_blank" class="hover-cinematic block text-pink-500 group">
+                            <img src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/bb7d3ef00908c2492255b1329ca2f623.jpg" class="w-full aspect-[3/4] object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/40">
+                                <div class="w-14 h-14 bg-pink-500 rounded-full flex items-center justify-center shadow-[0_0_20px_#f472b6]">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4 bg-black/80 px-3 py-1.5 rounded text-xs font-mono text-pink-300 z-20 border border-pink-500/50 truncate" title="《病鹤啄雪之神医师妹名震京华第二季》">《病鹤啄雪之神医师妹名震京华第二季》</div>
+                        </a>
+
+                        <!-- 第6个短剧 -->
+                        <a href="https://novelquickapp.com/s/yDN0TlVZF08/" target="_blank" class="hover-cinematic block text-pink-500 group">
+                            <img src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/09132890803da35820f784662e934f96.jpg" class="w-full aspect-[3/4] object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/40">
+                                <div class="w-14 h-14 bg-pink-500 rounded-full flex items-center justify-center shadow-[0_0_20px_#f472b6]">
+                                    <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4 bg-black/80 px-3 py-1.5 rounded text-xs font-mono text-pink-300 z-20 border border-pink-500/50 truncate" title="《错位相亲，月光与他皆温柔第二季》">《错位相亲，月光与他皆温柔第二季》</div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#fff9f9] pt-20 pb-10 text-center relative overflow-hidden">
+        <div class="absolute inset-0 dashed-line opacity-10"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10 px-4">
+            <h2 class="text-6xl md:text-8xl font-display text-[#ff4d85] mb-2">Thanks</h2>
+            <h2 class="text-5xl md:text-7xl font-script text-[#50d8d7] -mt-6 mb-10 transform -rotate-3">+ Watching +</h2>
+            
+            <div class="inline-block bg-[#ffebf0] border-4 border-white px-8 py-6 rounded-3xl shadow-xl text-left max-w-lg mx-auto relative hover:scale-105 transition-transform cursor-pointer">
+                <div class="sticker -top-6 -right-6 bg-yellow-400 text-white px-4 py-1 rounded-full font-black text-sm border-2 border-white transform rotate-12 shadow-md">HIRE ME</div>
+                <div class="flex items-center gap-4 border-b-2 border-pink-200 pb-4 mb-4">
+                     <div class="w-16 h-16 bg-white rounded-full overflow-hidden border-4 border-pink-400 shrink-0 shadow-inner">
+                         <img src="https://raw.githubusercontent.com/ssskky123/-1/refs/heads/main/0f6a288613da79b7d595250a1055ce52.jpg" class="w-full h-full object-cover">
+                     </div>
+                     <div>
+                         <p class="font-black text-[#ff4d85] text-xl">宋恺钰 <span class="text-xs bg-pink-500 text-white px-2 py-0.5 rounded-full align-middle ml-2">AI生成师</span></p>
+                         <p class="text-xs text-gray-500 font-bold tracking-widest mt-1">湖北美术学院 - 随时到岗</p>
+                     </div>
+                </div>
+                <p class="text-sm text-gray-600 mb-2 font-bold"><strong>TEL:</strong> <span class="text-pink-500">18062783877</span></p>
+                <p class="text-sm text-gray-600 font-bold"><strong>EMAIL:</strong> <span class="text-pink-500">3298944603@qq.com</span></p>
+            </div>
+            
+            <p class="text-xs text-gray-400 mt-20 tracking-widest uppercase font-bold">© 2024 Song Kaiyu. AIGC Portfolio Design.</p>
+        </div>
+    </footer>
+
+    <div id="lightbox-overlay"></div>
+    <div id="lightbox-content">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const zoomableItems = document.querySelectorAll('.zoomable-item');
+            const overlay = document.getElementById('lightbox-overlay');
+            const content = document.getElementById('lightbox-content');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            let currentActiveElement = null;
+
+            function openLightbox(e) {
+                const container = e.currentTarget;
+                const img = container.querySelector('img');
+                if(!img) return;
+
+                currentActiveElement = container;
+                
+                const highResSrc = img.getAttribute('data-src') || img.src;
+                lightboxImg.src = highResSrc;
+
+                const rect = container.getBoundingClientRect();
+                
+                // Snap directly to the thumbnail's current on-screen position without transition
+                content.style.transition = 'none';
+                content.style.left = `${rect.left}px`;
+                content.style.top = `${rect.top}px`;
+                content.style.width = `${rect.width}px`;
+                content.style.height = `${rect.height}px`;
+                content.style.opacity = '1';
+                
+                content.offsetHeight; // Force layout recalculation
+                
+                container.classList.add('zoom-hidden');
+                overlay.classList.add('active');
+                
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                const aspectRatio = rect.width / rect.height;
+                
+                // Target exactly 75% of viewport width
+                let targetWidth = viewportWidth * 0.75;
+                let targetHeight = targetWidth / aspectRatio;
+                
+                // If it's too tall, scale down to fit height instead
+                if (targetHeight > viewportHeight * 0.85) {
+                    targetHeight = viewportHeight * 0.85;
+                    targetWidth = targetHeight * aspectRatio;
+                }
+                
+                const targetLeft = (viewportWidth - targetWidth) / 2;
+                const targetTop = (viewportHeight - targetHeight) / 2;
+
+                // Dramatic, slightly bouncy scale-up animation
+                content.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                content.style.left = `${targetLeft}px`;
+                content.style.top = `${targetTop}px`;
+                content.style.width = `${targetWidth}px`;
+                content.style.height = `${targetHeight}px`;
+                
+                content.classList.add('active');
+            }
+
+            function closeLightbox() {
+                if (!currentActiveElement) return;
+                
+                // Instantly remove blocking overlay to never block page interaction
+                content.classList.remove('active');
+                overlay.classList.remove('active');
+                
+                // 关键点：重新获取原缩略图此时此刻的屏幕相对坐标！
+                // 这确保了即使您在图片放大时上下滚动了网页，它也能精准追踪并飞回正确的新位置
+                const rect = currentActiveElement.getBoundingClientRect();
+                
+                // 快速干脆地缩回原位
+                content.style.transition = 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+                content.style.left = `${rect.left}px`;
+                content.style.top = `${rect.top}px`;
+                content.style.width = `${rect.width}px`;
+                content.style.height = `${rect.height}px`;
+                
+                setTimeout(() => {
+                    currentActiveElement.classList.remove('zoom-hidden');
+                    content.style.opacity = '0'; // 缩回后立刻隐身，不阻挡后续交互
+                    currentActiveElement = null;
+                }, 400); // 匹配 transition 时间
+            }
+
+            zoomableItems.forEach(item => {
+                item.addEventListener('click', openLightbox);
+            });
+
+            overlay.addEventListener('click', closeLightbox);
+            content.addEventListener('click', closeLightbox);
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
